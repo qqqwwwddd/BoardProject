@@ -1,0 +1,54 @@
+package com.spring.service;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.function.Function;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.stereotype.Service;
+
+import com.spring.dto.BoardDTO;
+import com.spring.dto.CommentDTO;
+import com.spring.dto.PageRequestDTO;
+import com.spring.dto.PageResultDTO;
+import com.spring.model.Board;
+import com.spring.model.Comment;
+import com.spring.repository.CommentRepository;
+
+@Service
+public class CommentServiceImpl implements CommentService {
+
+	@Autowired
+	private CommentRepository commentRepository;
+
+	@Override
+	public List<CommentDTO> findAllbyBoardBoardNo(Long boardNo, PageRequestDTO pageDTO) {
+
+		List<CommentDTO> commentDTO = new ArrayList<CommentDTO>();
+		for (Comment commentEntity : commentRepository.findAllbyBoardBoardNo(boardNo, pageDTO)) {
+			commentDTO.add(commentEntity.toDTO(commentEntity));
+		}
+
+		return commentDTO;
+	}
+	
+	public PageResultDTO<CommentDTO, Comment> getList(PageRequestDTO pageRequestDTO) {
+		Pageable pageable = pageRequestDTO.getPageable(Sort.by("boardNo").ascending());
+
+		Page<Comment> result = commentRepository.findAll(pageable);
+
+		// entity -> dto
+		Function<Comment, CommentDTO> function = (commentEntity -> commentEntity.toDTO(commentEntity));
+
+		return new PageResultDTO<CommentDTO, Comment>(result, function);
+	}
+
+	public PageResultDTO<CommentDTO, Comment> findAll(PageRequestDTO pageDTO) {
+		return null;
+	}
+
+
+}

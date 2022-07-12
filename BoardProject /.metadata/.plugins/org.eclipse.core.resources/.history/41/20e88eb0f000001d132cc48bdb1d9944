@@ -1,0 +1,29 @@
+package com.spring.service;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.spring.dto.BoardDTO;
+import com.spring.model.Board;
+import com.spring.repository.BoardRepository;
+
+public class BoardServiceImpl implements BoardService {
+
+	@Autowired
+	private BoardRepository boardRepository;
+
+	// 모든 Board
+	@Override
+	public List<BoardDTO> getAllBoard() {
+
+		List<BoardDTO> boardDTO = new ArrayList<BoardDTO>();
+		for (Board boardEntity : boardRepository.findAll()) {
+			boardDTO.add(boardEntity.toDTO(boardEntity));
+		}
+ 
+		return boardDTO;
+	}
+
+}

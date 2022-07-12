@@ -1,0 +1,42 @@
+package com.spring.service;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.spring.dto.CommentDTO;
+import com.spring.model.Comment;
+import com.spring.repository.CommentRepository;
+
+@Service
+public class CommentServiceImpl implements CommentService {
+
+	@Autowired
+	private CommentRepository commentRepository;
+
+	// 전체 댓글
+	@Override
+	public List<CommentDTO> getList(Long boardNo) {
+		List<Comment> commentList = commentRepository.findCommentByBoardBoardNo(boardNo);
+		List<CommentDTO> commentDTO = new ArrayList<CommentDTO>();
+		for (Comment commentEntity : commentList) {
+			commentDTO.add(commentEntity.toDTO(commentEntity));
+		}
+
+		return commentDTO;
+	}
+
+	// 댓글 추가
+	@Override
+	public void insertComment(CommentDTO commentDTO) {
+
+	}
+
+
+
+
+
+
+}

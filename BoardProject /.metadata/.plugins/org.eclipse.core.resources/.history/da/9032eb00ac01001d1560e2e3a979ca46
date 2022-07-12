@@ -1,0 +1,32 @@
+package com.spring.service;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.spring.dto.CommentDTO;
+import com.spring.dto.PageRequestDTO;
+import com.spring.model.Comment;
+import com.spring.repository.CommentRepository;
+
+@Service
+public class CommentServiceImpl implements CommentService {
+
+	@Autowired
+	private CommentRepository commentRepository;
+
+	@Override
+	public List<CommentDTO> findAllbyBoardBoardNo(Long boardNo, PageRequestDTO pageDTO) {
+
+		List<CommentDTO> commentDTO = new ArrayList<CommentDTO>();
+		for (Comment commentEntity : commentRepository.findAllbyBoardBoardNo(boardNo,pageDTO)) {
+			commentDTO.add(commentEntity.toDTO(commentEntity));
+		}
+
+		return commentDTO;
+	}
+
+
+}

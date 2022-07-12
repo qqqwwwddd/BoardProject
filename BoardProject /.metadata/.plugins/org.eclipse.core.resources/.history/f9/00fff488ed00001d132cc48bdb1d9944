@@ -1,0 +1,72 @@
+package com.spring.model;
+
+import java.time.LocalDateTime;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EntityListeners;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.domain.Persistable;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
+import com.spring.dto.CommentDTO;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
+@Entity
+@Getter
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
+@EntityListeners(AuditingEntityListener.class)
+public class Comment implements Persistable<Long> {
+
+	@org.springframework.data.annotation.Id
+	private Long comment_no;
+
+	@Column(length = 255)
+	private String comment_content;
+
+	@Column(length = 255)
+	private String commenter;
+
+	@CreatedDate
+	private LocalDateTime registered_date;
+
+	@LastModifiedDate
+	private LocalDateTime modified_date;
+
+	@ManyToOne
+	@JoinColumn(name = "board_no")
+	private Board board;
+
+	@Override
+	public Long getId() {
+		return comment_no;
+	}
+
+	@Override
+	public boolean isNew() {
+		return registered_date == null;
+	}
+
+	// toDTO
+
+	public CommentDTO toDTO(Comment commentEntity) {
+		CommentDTO commentDTO = CommentDTO.builder().comment_no(commentEntity.getComment_no()).comment_content(commentEntity.getComment_content())
+				.commenter(commentEntity.getCommenter())
+				.registered_date(commentEntity.getRegistered_date())
+				.modified_date(commentEntity.getModified_date()).build();
+		return commentDTO;
+		
+	}
+
+}

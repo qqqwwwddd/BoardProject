@@ -1,0 +1,37 @@
+package com.spring.dto;
+
+import java.time.LocalDateTime;
+
+import javax.persistence.Column;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+
+import com.spring.model.Board;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
+public class CommentDTO {
+
+	private Long comment_no;
+
+	private String comment_content;
+
+	private String commenter;
+
+	private LocalDateTime registered_date;
+
+	private LocalDateTime modified_date;
+
+	private Board board;
+}

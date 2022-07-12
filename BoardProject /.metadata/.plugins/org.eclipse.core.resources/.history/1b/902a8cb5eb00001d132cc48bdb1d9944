@@ -1,0 +1,21 @@
+package com.spring.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.spring.dto.BoardDTO;
+import com.spring.repository.BoardRepository;
+
+public class BoardServiceImpl implements BoardService {
+
+	@Autowired
+	private BoardRepository boardRepository;
+
+	// 모든 Board
+	@Override
+	public List<BoardDTO> getAllBoard() {
+		return;
+	}
+
+}

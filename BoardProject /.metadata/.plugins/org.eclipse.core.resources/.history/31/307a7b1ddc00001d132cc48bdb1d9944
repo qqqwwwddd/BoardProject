@@ -1,0 +1,55 @@
+package com.spring.model;
+
+import java.time.LocalDateTime;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EntityListeners;
+import javax.persistence.Id;
+
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.domain.Persistable;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
+@Entity
+@Getter
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
+@EntityListeners(AuditingEntityListener.class)
+public class User implements Persistable<String> {
+
+	@Id
+	@Column(length = 255)
+	private String user_email;
+	
+
+	@Column(length = 255)
+	private String user_name;
+
+	@Column(length = 255)
+	private String user_password;
+
+	@CreatedDate
+	private LocalDateTime registered_date;
+
+	@CreatedDate
+	private LocalDateTime modified_date;
+
+
+	@Override
+	public String getId() {
+		return user_email;
+	}
+
+	@Override
+	public boolean isNew() {
+		return registered_date == null;
+	}
+
+}

@@ -1,0 +1,33 @@
+package com.spring.service;
+
+import java.util.List;
+import java.util.function.Function;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.stereotype.Service;
+
+import com.spring.dto.CommentDTO;
+import com.spring.dto.PageRequestDTO;
+import com.spring.dto.PageResultDTO;
+import com.spring.model.Comment;
+import com.spring.repository.CommentRepository;
+
+@Service
+public class CommentServiceImpl implements CommentService {
+
+	@Autowired
+	private CommentRepository commentRepository;
+
+	public List<CommentDTO> getList(Long boardNo) {
+		return null;
+	}
+
+
+	
+
+
+
+}

@@ -1,0 +1,10 @@
+package com.spring.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.spring.dto.BoardDTO;
+import com.spring.model.Board;
+
+public interface BoardRepository extends JpaRepository<BoardDTO, Long> {
+
+}

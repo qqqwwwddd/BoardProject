@@ -1,0 +1,80 @@
+package com.spring.model;
+
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EntityListeners;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.domain.Persistable;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
+import com.spring.dto.BoardDTO;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+
+@Entity
+@Getter
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
+@EntityListeners(AuditingEntityListener.class)
+@ToString(exclude = { "comments" })
+public class Board implements Persistable<Long> {
+
+	@Id
+	private Long board_no;
+
+	@Column(length = 255)
+	private String board_title;
+
+	@Column(length = 255)
+	private String board_content;
+
+	@CreatedDate
+	private LocalDateTime registered_date;
+
+	@LastModifiedDate
+	private LocalDateTime modified_date;
+
+	@ManyToOne
+	@JoinColumn(name = "user_email")
+	private User user;
+
+	@OneToMany(mappedBy = "board", fetch = FetchType.LAZY)
+	List<Comment> comments = new ArrayList<Comment>();
+
+	@Override
+	public Long getId() {
+		return board_no;
+	}
+
+	@Override
+	public boolean isNew() {
+		return registered_date == null;
+	}
+
+	// toDTO
+	public BoardDTO toDTO(Board boardEntity) {
+		BoardDTO boardDTO = BoardDTO.builder().board_no(boardEntity.getBoard_no())
+												.board_title(boardEntity.getBoard_title())
+												.board_content(boardEntity.getBoard_content())
+				.registered_date(boardEntity.getRegistered_date()).modified_date(boardEntity.getModified_date())
+						.build();
+
+	}
+
+}

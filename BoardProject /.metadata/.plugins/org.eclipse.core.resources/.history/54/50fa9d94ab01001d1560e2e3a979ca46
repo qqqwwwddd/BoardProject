@@ -1,0 +1,12 @@
+package com.spring.service;
+
+import java.util.List;
+
+import com.spring.dto.CommentDTO;
+import com.spring.dto.PageRequestDTO;
+import com.spring.dto.PageResultDTO;
+
+public interface CommentService {
+
+	public List<CommentDTO> findAllbyBoardBoardNo(Long boardNo, PageRequestDTO pageDTO);
+}

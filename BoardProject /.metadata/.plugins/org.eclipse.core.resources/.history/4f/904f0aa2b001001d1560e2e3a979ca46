@@ -1,0 +1,11 @@
+package com.spring.service;
+
+import java.util.List;
+
+import com.spring.dto.CommentDTO;
+import com.spring.dto.PageRequestDTO;
+
+public interface CommentService {
+
+	public List<CommentDTO> getList(Long boardNo); 
+}

@@ -1,0 +1,14 @@
+package com.spring.service;
+
+import java.util.List;
+
+import com.spring.dto.BoardDTO;
+
+public interface BoardService {
+
+	// 모든 Board
+	public List<BoardDTO> getAllBoard();
+	
+	public void insertBoard();
+
+}

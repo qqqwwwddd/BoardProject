@@ -1,0 +1,35 @@
+package com.spring.model;
+
+import java.time.LocalDateTime;
+
+import javax.persistence.Entity;
+import javax.persistence.EntityListeners;
+
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
+import lombok.AllArgs
+import lombok.Builder;
+import lombok.NoArgsConstructor;Constructor;
+import lombok.Getter;
+
+@Entity
+@Getter
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
+@EntityListeners(AuditingEntityListener.class)
+public class User {
+
+	private Long board_no;
+
+	private String board_title;
+
+	private String board_content;
+
+	private LocalDateTime registered_date;
+
+	private LocalDateTime modified_date;
+
+	private String user_email;
+
+}

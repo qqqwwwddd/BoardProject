@@ -1,0 +1,26 @@
+package com.spring.api;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.spring.dto.BoardDTO;
+import com.spring.service.BoardServiceImpl;
+
+@RestController
+public class BoardRestController {
+	
+	@Autowired
+	BoardServiceImpl boardService;
+	
+	// 모든 Board
+	@GetMapping(value = "/boardList")
+	public List<BoardDTO> getBoards() {
+		return boardService.getAllBoard();
+	}
+	
+
+
+}

@@ -1,0 +1,63 @@
+package com.spring.model;
+
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EntityListeners;
+import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.domain.Persistable;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+
+@Entity
+@Getter
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
+@EntityListeners(AuditingEntityListener.class)
+@ToString(exclude = { "boards" })
+public class User implements Persistable<String> {
+
+	@Id
+	@Column(length = 255)
+	private String user_email;
+
+	@Column(length = 255)
+	private String user_name;
+
+	@Column(length = 255)
+	private String user_password;
+
+	@CreatedDate
+	private LocalDateTime registered_date;
+
+	@LastModifiedDate
+	private LocalDateTime modified_date;
+
+	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+	List<Board> boards = new ArrayList<Board>();
+
+	@Override
+	public String getId() {
+		return user_email;
+	}
+
+	@Override
+	public boolean isNew() {
+		return registered_date == null;
+	}
+
+}
