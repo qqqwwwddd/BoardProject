@@ -1,6 +1,6 @@
 package com.spring.model;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -50,11 +50,11 @@ public class Board {
 
 	@CreatedDate
 	@Column(name = "registered_date")
-	private LocalDate regiDate;
+	private LocalDateTime regiDate;
 
 	@LastModifiedDate
 	@Column(name = "modified_date")
-	private LocalDate modiDate;
+	private LocalDateTime modiDate;
 
 	@ManyToOne
 	@JoinColumn(name = "user_email")

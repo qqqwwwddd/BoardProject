@@ -1,0 +1,157 @@
+a {
+    text-decoration: none;
+}
+/* ---- header ---- */
+.header {
+    font-size: 40px;
+    font-weight: bold;
+    margin: 10px;
+    color: skyblue;
+    width: 100;
+    height: 10px;
+    display: flex;
+    justify-content: left;
+}
+
+.header:hover {
+    cursor: pointer;
+    font-size: 40px;
+    margin: 10px;
+    display: flex;
+    color: grey;
+}
+.header ul > li {
+    font-size: 20px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.header_items {
+    display: flex;
+    /* flex-direction: row; */
+    justify-content: right;
+
+    font-size: 20px;
+}
+
+.header_items a {
+    border: solid 2px skyblue;
+    border-radius: 5px;
+    margin: 5px;
+    background-color: white;
+    color: skyblue;
+    padding: 5px;
+}
+
+.header_items a:hover {
+    border: solid 2px white;
+    border-radius: 5px;
+    margin: 5px;
+    background-color: skyblue;
+    color: white;
+    padding: 5px;
+}
+/* ---- header ---- */
+
+/* ---- BOARD ---- */
+Form {
+    border: solid 3px skyblue;
+    border-radius: 10px;
+    margin: 20px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.content input {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    margin: 10px;
+    justify-content: space-around;
+}
+.content h5 {
+    color: skyblue;
+    font-weight: bold;
+    margin: 10px;
+}
+
+/* ---- BOARD ---- */
+
+/* ---- TABLE ---- */
+.table {
+    color: grey;
+}
+.table td {
+    text-align: center;
+}
+.title {
+    width: 600px;
+}
+/* ---- TABLE ---- */
+
+/* ---- PAGINATION ---- */
+.pagination {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    padding: 5px;
+}
+
+.page_item {
+    padding: 5px;
+    font-size: 15px;
+    color: aliceblue;
+    border: solid 1px skyblue;
+    background-color: skyblue;
+}
+
+.page_item:hover {
+    cursor: pointer;
+}
+
+.page_items {
+    padding: 5px;
+    font-size: 15px;
+    color: skyblue;
+    border: solid 1px skyblue;
+}
+
+.page_items:hover {
+    cursor: pointer;
+    color: navy;
+    background-color: aliceblue;
+}
+/* ---- PAGINATION ---- */
+
+/* ---- BUTTON ---- */
+.button {
+    background-color: skyblue;
+    border: solid 1px skyblue;
+}
+.button:hover {
+    background-color: white;
+    color: skyblue;
+    border: solid 1px skyblue;
+}
+
+button {
+    width: fit-content;
+    border: solid 1px skyblue;
+    color: darkgray;
+    background-color: white;
+    border-radius: 5%;
+    margin: 5px;
+    font-size: medium;
+}
+
+button:hover {
+    cursor: pointer;
+
+    color: white;
+    background-color: skyblue;
+}
+
+/* ---- BUTTON ---- */

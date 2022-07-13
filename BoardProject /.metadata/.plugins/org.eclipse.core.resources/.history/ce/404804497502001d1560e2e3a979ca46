@@ -1,6 +1,7 @@
 package com.spring.dto;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import com.spring.model.Board;
 import com.spring.model.Comment;

@@ -1,6 +1,6 @@
 package com.spring.dto;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,9 +25,9 @@ public class BoardDTO {
 
 	private String boardContent;
 
-	private LocalDate regiDate;
+	private LocalDateTime regiDate;
 
-	private LocalDate modiDate;
+	private LocalDateTime modiDate;
 
 	private User user;
 

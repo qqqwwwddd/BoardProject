@@ -2,26 +2,28 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { getBoardList } from "../../api/boardAPI";
 import "../Board/board.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { table } from "react-bootstrap";
 
 const getlist = (boardList, page, setPage) => {
-    console.log(boardList);
+    // console.log(boardList);
 
     return (
         <div>
-            <table border={1}>
+            <table className="table">
                 <thead>
                     <tr>
                         <td>
-                            <h2>No.</h2>
+                            <h5>NO</h5>
+                        </td>
+                        <td className="title">
+                            <h5>제목</h5>
                         </td>
                         <td>
-                            <h2>제목</h2>
+                            <h5>작성자</h5>
                         </td>
                         <td>
-                            <h2>작성자</h2>
-                        </td>
-                        <td>
-                            <h2>등록일</h2>
+                            <h5>등록일</h5>
                         </td>
                     </tr>
                 </thead>
@@ -34,21 +36,24 @@ const getlist = (boardList, page, setPage) => {
                                     <td>{board.boardNo}</td>
                                     <td>
                                         <Link to={`/board/${board.boardNo}`}>
-                                            {`${board.boardTitle}[${board.comments.length}]`}
+                                            {`${board.boardTitle}   [${board.comments.length}]`}
                                         </Link>
                                     </td>
-                                    <td>{board.user.userEmail}</td>
+                                    <td>
+                                        {board.user.userEmail.split("@")[0]}
+                                    </td>
                                     <td>{board.regiDate}</td>
                                 </tr>
                             );
                         })}
                 </tbody>
             </table>
+
             {/* 페이징 */}
             <ul className="pagination">
                 <li className="page_item">
                     <span onClick={() => setPage(page === 1 ? 1 : page - 1)}>
-                        Previous
+                        {`<`}
                     </span>
                 </li>
                 {boardList &&
@@ -77,7 +82,7 @@ const getlist = (boardList, page, setPage) => {
                             )
                         }
                     >
-                        Next
+                        {`>`}
                     </span>
                 </li>
             </ul>
@@ -91,8 +96,8 @@ function BoardList() {
     useEffect(() => {
         getBoardList(setBoardList, page);
     }, [page]);
-    console.log(boardList);
-    console.log(page);
+    // console.log(boardList);
+    // console.log(page);
     return <div>{getlist(boardList, page, setPage)}</div>;
     //  <div>{getlist({})}</div>;
 }

@@ -1,6 +1,7 @@
 package com.spring.model;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -43,7 +44,7 @@ public class Comment {
 
 	@CreatedDate
 	@Column(name = "registerd_date")
-	private LocalDate regiDate;
+	private LocalDateTime regiDate;
 
 	@LastModifiedDate
 	@Column(name = "modified_date")

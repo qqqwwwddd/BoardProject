@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { allComments } from "../../api/commentAPI";
 import AddCommentForm from "./AddComment";
 import CommentList from "./CommentList";
+import "../Comment/comment.css";
 
 function Comment({ boardNo }) {
     const [data, setData] = useState([]);
